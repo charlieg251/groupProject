@@ -160,9 +160,10 @@ var drawFace = function(x,y,emojiHeight){
     bezier(x, y+(emojiHeight/150*2), x+(emojiHeight/150*14), y+(emojiHeight/150*26), x-(emojiHeight/150*8), y+(emojiHeight/150*20), x-(emojiHeight/150*4), y+(emojiHeight/150*15)); 
     
     //mouth
-    fill(217, 106, 121); 
-    arc(x+(emojiHeight/150*2),y+(emojiHeight/150*27),emojiHeight/150*20,emojiHeight/150*8,emojiHeight/150*1,emojiHeight/150*180);
-    arc(x+(emojiHeight/150*2),y+(emojiHeight/150*27),emojiHeight/150*21,emojiHeight/150*8,emojiHeight/150*180,emojiHeight/150*360);
+    fill(255, 199, 208);
+    arc(x+(emojiHeight/150*2),y+(emojiHeight/150*27),emojiHeight/150*20,emojiHeight/150*8,emojiHeight/150*1,emojiHeight/150*154);
+    
+    arc(x+(emojiHeight/150*2),y+(emojiHeight/150*27),emojiHeight/150*20,emojiHeight/150*8,emojiHeight/150*180,emojiHeight/151*494);
     
     //line betwwen lips
     line(x-(emojiHeight/150*7),y+(emojiHeight/150*27),x+(emojiHeight/150*11),y+(emojiHeight/150*27)); 
@@ -181,7 +182,7 @@ var drawBody = function(x,y,emojiHeight){
     fill(0, 0, 0);
     textSize(emojiHeight/150*12);
     text("DATL",x+(emojiHeight/150*4),y+(emojiHeight/150*100));
-    
+        
     line(x+(emojiHeight/150*2),y+(emojiHeight/150*106),x+(emojiHeight/150*2),y+(emojiHeight/150*42)); //shirt line
     };
 
@@ -231,7 +232,6 @@ Button.prototype.draw = function() {
     rect(this.x, this.y, this.width, this.height, 5);
     fill(0, 0, 0);
     textSize(19);
-    textAlign(LEFT, TOP);
     text(this.label, this.x+10, this.y+this.height/4);
 };
 
@@ -269,11 +269,12 @@ mouseReleased = function() {
 
 var splash = function(){
     background(125, 181, 209);
+    stroke(0, 0, 0);
     fill(82, 80, 52);
     rect(-2,-5,407,48); //Top Line
     fill(255, 255, 255);
     textSize(21);
-    text("Learning Spanish with Danny and Charlie!", 3,7); // Title
+    text("Learning Spanish with Danny and Charlie!", 3,29); // Title
     fill(82, 80, 52);
     rect(-5,300,419,150); // SideWalk
     fill(255, 0, 0);
