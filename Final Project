@@ -318,19 +318,19 @@ var mistake1 = function(){
     drawEmoji(288,59,98);  //Danny's Call
     fill(0, 0, 0);
     textSize(16);
-    text("Try again!", 144, 20);
+    text("spn: No, my name is Danny. \n eng: Try again!", 144, 20);
     fill(242, 22, 95);
     rect(5, 304, 108, 78); //first answer box
     fill(0, 0, 0);
-    text("spn: My name \n is Player.", 11, 317);
+    text("spn: My name \n is Player.", 11, 337);
     fill(242, 22, 95);
     rect(145, 304, 110, 78);
     fill(0, 0, 0);
-    text("spn: Your name \n is Player.", 143, 317);
+    text("spn: Your name \n is Player.", 154, 338);
     fill(242, 22, 95);
     rect(287, 304, 110, 78);
     fill(0, 0, 0);
-    text("What?", 318, 317);
+    text("What?", 318, 345);
 };
 
 var game2 = function(){
@@ -351,7 +351,7 @@ var game2 = function(){
     fill(0, 0, 0);
     text("", 143, 317);
     fill(242, 22, 95);
-    rect(287, 304, 110, 78);
+    rect(287, 304, 110, 78); //third answer box
     fill(0, 0, 0);
     text("", 318, 317);
 };
@@ -365,6 +365,11 @@ mouseClicked = function(){
     if (mouseX >= 145 && mouseX <= 255 && mouseY >= 304 && mouseY <= 412){
         if (currentScene === 1){
                 currentScene = 1.5;
+        }
+    }
+    if (mouseX >= 287 && mouseX <= 397 && mouseY >= 304 && mouseY <= 382){
+        if (currentScene === 1){
+            
         }
     }
 };
