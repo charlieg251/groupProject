@@ -279,7 +279,7 @@ var splash = function(){
     rect(-5,300,419,150); // SideWalk
     fill(255, 0, 0);
     rect(50,77,301,222); // Building
-    fill(255, 255, 255);
+    fill(115, 171, 127);
     rect(73,97,68,133); // Window
     rect(254,97,68,133); // Window
     drawBitmoji(79,101,42); //Charlie's Call
