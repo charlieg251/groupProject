@@ -1,4 +1,5 @@
 var currentScene = 0;
+var mistakeFlip = null;
 
 //Charlie's Bitmoji
 var drawHeadd = function(x,y,h){
@@ -259,12 +260,117 @@ var startButton = new Button({
     }
 });
 
+
 mouseReleased = function() {
     if (currentScene=== 0){
         startButton.handleMouseClick(); 
     }
 
 };
+
+var gameScene = function(config){ //game scene constructor function
+    this.question = config.question;
+    this.box1 = config.box1; //text for answer boxes
+    this.box2 = config.box2;
+    this.box3 = config.box3;
+};
+
+gameScene.prototype.draw = function() {
+    background(81, 244, 247);
+    fill(125, 83, 29); 
+    rect(2, 126, 402, 126);// counter
+    drawBitmoji(63,-1,42); //Charlie's Call
+    drawEmoji(288,59,98);  //Danny's Call
+    fill(0, 0, 0);
+    textSize(18);
+    text(this.question, 50, 20);
+    fill(242, 22, 95);
+    rect(5, 295, 125, 90); //first answer box
+    fill(0, 0, 0);
+    text(this.box1, 29, 342);
+    fill(242, 22, 95);
+    rect(137, 295, 125, 90); //second answer box
+    fill(0, 0, 0);
+    text(this.box2, 156, 342);
+    fill(242, 22, 95);
+    rect(271, 295, 125, 90); //third answer box
+    fill(0, 0, 0);
+    text(this.box3, 307, 342);
+};
+
+var gScene1 = new gameScene ({ //first scene
+    question: "Welcome! What's your name?",
+    box1: "My name \n is David.",
+    box2: "Your name \n is David.",
+    box3: "What?"
+    
+});
+
+var gScene2 = new gameScene ({ //second scene
+    question: "How are you doing today?",
+    box1: "I'm doing\ngood! And \nyourself?",
+    box2: "Yes!",
+    box3: "Will do later!\nThank you."
+    
+});
+
+var gScene3 = new gameScene ({ //third scene
+    question: "",
+    box1: "",
+    box2: "",
+    box3: ""
+    
+});
+
+var gScene4 = new gameScene ({ //fourth scene
+    question: "",
+    box1: "",
+    box2: "",
+    box3: ""
+    
+});
+
+var mistakeScene = function(config) {   //Constructor for mistake scenes
+    this.error = config.error; //response to mistake
+};
+
+mistakeScene.prototype.draw = function() {
+    background(81, 244, 247);
+    fill(125, 83, 29); 
+    rect(2, 126, 402, 126);// counter
+    drawBitmoji(63,-1,42); //Charlie's Call
+    drawEmoji(288,59,98);  //Danny's Call
+    fill(0, 0, 0);
+    textSize(16);
+    text(this.error, 144, 20);
+    fill(0, 0, 0);
+    textSize(22);
+    text("Try again!", 150, 337);
+};
+
+var mScene1 = new mistakeScene ({ //mistake scene 1
+    error: "No, my name is Danny."
+});
+
+var mScene2 = new mistakeScene ({ //mistake scene 2
+    error: "That's not a response."
+});
+
+var mScene3 = new mistakeScene ({ //mistake scene 3
+    error: "What do you mean?"
+});
+
+var mScene4 = new mistakeScene ({ //mistake scene 4
+    error: "That doesn't make sense."
+});
+
+var mScene5 = new mistakeScene ({ //mistake scene 5
+    error: "What do you mean?"
+});
+
+var mScene6 = new mistakeScene ({ //mistake scene 6
+    error: "That doesn't make sense."
+});
 
 
 var splash = function(){
@@ -287,239 +393,9 @@ var splash = function(){
     startButton.draw();
 };
 
-var game1 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("Welcome! What's your name?", 50, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("My name \n is David.", 29, 342);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Your name \n is David.", 156, 342);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("What?", 307, 342);
-};
-
-var game2 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("How are you doing today?", 59, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("I'm doing\ngood! And\nyourself?", 28, 325);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Yes!", 184, 346);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("Will do later!\nThank you.", 285, 336);
-};
-
-var game3 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("", 93, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("", 20, 330);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Yes!", 187, 346);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("", 291, 342);
-};
-
-var game4 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("", 33, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("", 40, 346);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("", 152, 338);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("", 297, 346);
-};
-
-var mistake1 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(16);
-    text("spn: No, my name is Danny. \n eng: Try again!", 144, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("spn: My name \n is Player.", 11, 337);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("spn: Your name \n is Player.", 154, 338);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("What?", 318, 345);
-};
-
-var mistake2 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("spn: That's not a response, \n eng: Try again!", 144, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("spn: My name \n is Player.", 11, 337);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("spn: Your name \n is Player.", 154, 338);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("What?", 318, 345);
-};
-
-var mistake3 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("What do you mean? \n Try again!", 93, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("I'm doing\ngood! And\nyourself?", 20, 330);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Yes!", 187, 346);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("Will do later!\nThank you.", 291, 342);
-};
-
-var mistake4 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("That doesn't make sense. \n Try again!", 93, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("I'm doing\ngood! And\nyourself?", 20, 330);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Yes!", 187, 346);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("Will do later!\nThank you.", 291, 342);  
-};
-
-var mistake5 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("What do you mean? \n Try again!", 93, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("I like it!", 40, 346);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Where is the\nbathroom?", 152, 338);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("Yes I do!", 297, 346);
-};
-
-var mistake6 = function(){
-    background(81, 244, 247);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(18);
-    text("That doesn't make sense. \n Try again!", 93, 20);
-    fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
-    fill(0, 0, 0);
-    text("I like it!", 40, 346);
-    fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
-    fill(0, 0, 0);
-    text("Where is the\nbathroom?", 152, 338);
-    fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
-    fill(0, 0, 0);
-    text("Yes I do!", 297, 346);
-};
-
-//1.5 Mistake1 response scene, 1.6 is mistake2 response scene
+//1.5 mScene1 response scene, 1.6 is mScene2 response scene
 mouseClicked = function(){
-    if (mouseX >= 5 && mouseX <= 111 && mouseY >= 304 && mouseY <= 412){
+    if (mouseX >= 5 && mouseX <= 130 && mouseY >= 295 && mouseY <= 385){
         if (currentScene >= 1 && currentScene < 2){
                 currentScene = 2;
         } //first answer box in scene 1.
@@ -527,25 +403,31 @@ mouseClicked = function(){
                 currentScene = 3;
         } //first answer box in scene 2. 
         else if (currentScene >= 3 && currentScene < 4){
+                mistakeFlip = frameCount;
                 currentScene = 3.5;
         } //mistake answer box in scene 3
     }
-    if (mouseX >= 145 && mouseX <= 255 && mouseY >= 304 && mouseY <= 412){
+    if (mouseX >= 145 && mouseX <= 255 && mouseY >= 295 && mouseY <= 385){
         if (currentScene >= 1 && currentScene < 2){
+                mistakeFlip = frameCount;
                 currentScene = 1.5;
         }
         else if (currentScene >= 2 && currentScene < 3){
+                mistakeFlip = frameCount;
                 currentScene = 2.5;
         }
         else if (currentScene >= 3 && currentScene < 4){
+                mistakeFlip = frameCount;
                 currentScene = 3.6;
         }
     }
-    if (mouseX >= 287 && mouseX <= 397 && mouseY >= 304 && mouseY <= 382){
+    if (mouseX >= 287 && mouseX <= 397 && mouseY >= 295 && mouseY <= 385){
         if (currentScene >= 1 && currentScene < 2){
+                mistakeFlip = frameCount;
                 currentScene = 1.6;
         }
         else if (currentScene >= 2 && currentScene < 3){
+                mistakeFlip = frameCount;
                 currentScene = 2.6;
         }
         else if (currentScene >= 3 && currentScene < 4){
@@ -559,34 +441,52 @@ draw = function() {
       splash();
     }
     else if (currentScene === 1){
-      game1();
+      gScene1.draw();
     }
     else if (currentScene === 2){
-      game2();
+      gScene2.draw();
     }
     else if (currentScene === 3){
-      game3();
+      gScene3.draw();
     }
     else if (currentScene === 4){
-      game4();
+      gScene4.draw();
     }
     else if (currentScene === 1.5){
-        mistake1();
+        mScene1.draw();
+        if (mistakeFlip && (frameCount - mistakeFlip) > 70){
+            currentScene = 1;
+        }
     }
     else if (currentScene === 1.6){
-        mistake2();
+        mScene2.draw();
+        if (mistakeFlip && (frameCount - mistakeFlip) > 70){
+            currentScene = 1;
+        }
     }
     else if (currentScene === 2.5){
-        mistake3();
+        mScene3.draw();
+        if (mistakeFlip && (frameCount - mistakeFlip) > 70){
+            currentScene = 2;
+        }
     }
     else if (currentScene === 2.6){
-        mistake4();
+        mScene4.draw();
+        if (mistakeFlip && (frameCount - mistakeFlip) > 70){
+            currentScene = 2;
+        }
     }
     else if (currentScene === 3.5){
-        mistake5();
+        mScene5.draw();
+        if (mistakeFlip && (frameCount - mistakeFlip) > 70){
+            currentScene = 3;
+        }
     }
     else if (currentScene === 3.6){
-        mistake6();
+        mScene6.draw();
+        if (mistakeFlip && (frameCount - mistakeFlip) > 70){
+            currentScene = 3;
+        }
     }
 
 };
