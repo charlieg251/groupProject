@@ -342,87 +342,87 @@ gameScene.prototype.draw = function() {
 };
 
 var gScene1 = new gameScene ({ //first scene
-    question: "Welcome! What's your name?",
+    question: "Bienvenido! ¿Cuál es su nombre?",
     translation: "Welcome! What's your name?",
-    box1: "My name \n is David.",
-    box2: "Your name \n is David.",
-    box3: "What?"
+    box1: "Mi nombre\nes\n(tu nombre)!",
+    box2: "Tu nombre\nes\n(tu nombre)!",
+    box3: "¿Qué?"
     
 });
 
 var gScene2 = new gameScene ({ //second scene
-    question: "How are you doing today?",
+    question: "¿Cómo estás hoy?",
     translation: "How are you doing today?",
-    box1: "I'm doing\ngood! And \nyourself?",
-    box2: "Yes!",
-    box3: "Will do later!\nThank you."
+    box1: "¡Yo estoy\nbien! ¿Y tú?",
+    box2: "¡Sí!",
+    box3: "Yo lo termino\ndespués.\n¡Gracias!"
     
 });
 
 var gScene3 = new gameScene ({ //third scene
-    question: "Do you want \n to buy\nsomething?",
+    question: "¿Quieres comprar algo?",
     translation: "Do you want to buy something?",
-    box1: "I like it.",
-    box2: "Where is the\nbathroom?",
-    box3: "Yes, I do."
+    box1: "¡Me gusta!",
+    box2: "¿Dónde está\nel baño?",
+    box3: "Sí, yo quiero\ncomprar algo."
     
 });
 
 var gScene4 = new gameScene ({ //fourth scene
-    question: "What would you like to buy?",
+    question: "¿Qué quisieras comprar?",
     translation: "What would you like to buy?",
-    box1: "A lamp",
-    box2: "A book",
-    box3: "A hat"
+    box1: "Una lampara",
+    box2: "Un libro",
+    box3: "Una gorra"
     
 });
 
 var gScene5 = new gameScene ({ //fifth scene
-    question: "What would you use to pay?",
+    question: "¿Qué quisieras usar para pagar?",
     translation: "What would you use to pay?",
-    box1: "Money",
-    box2: "A car",
-    box3: "Cheese"
+    box1: "Con dinero\npor favor",
+    box2: "Un carro",
+    box3: "Con queso\npor favor"
 });
 
 var gScene6 = new gameScene ({ //sixth scene
-    question: "*Woof! Woof!*\nWhat was that?",
+    question: "*Woof! Woof!*\n¿Qué fue eso?",
     translation: "*Woof! Woof!*\nWhat was that?",
-    box1: "A cat",
-    box2: "A bird",
-    box3: "A dog"
+    box1: "Eso fue un\ngato.",
+    box2: "Esa fue una\nave.",
+    box3: "Eso fue un\nperro."
 });
 
 var gScene7 = new gameScene ({ //sixth scene
-    question: "",
-    translation: "",
-    box1: "",
-    box2: "correct",
-    box3: ""
+    question: "¿De quién es ese perro?",
+    translation: "Who's Dog is that?",
+    box1: "Ese gato\nes mío.",
+    box2: "Ese perro\nes mío.",
+    box3: "¡Mañana está\nbien!"
 });
 
 var gScene8 = new gameScene ({ //sixth scene
-    question: "",
-    translation: "",
-    box1: "",
-    box2: "",
-    box3: "correct"
+    question: "Oh, está bien. Bueno, continuemos!",
+    translation: "Oh, it's fine. Well, let's continue!",
+    box1: "La foto.",
+    box2: "Sí, aquí está\nel teclado.",
+    box3: "Sí, aquí está\nel dinero."
 });
 
 var gScene9 = new gameScene ({ //sixth scene
-    question: "",
-    translation: "",
-    box1: "correct",
-    box2: "",
-    box3: ""
+    question: "Gracias. ¡Aquí está su recibo! ¿Quisiera\nsacar una tarjeta de cupones\ncon nosotros?",
+    translation: "Thank you. Here is your receipt! Would you like to get a coupon card with us?",
+    box1: "¡No gracias!\nQuizas otro\ndía.",
+    box2: "Mi carro\nesta prendido.",
+    box3: "El dulce\nesta muy\nbueno."
 });
 
 var gScene10 = new gameScene ({ //sixth scene
-    question: "",
-    translation: "",
-    box1: "",
-    box2: "",
-    box3: "correct"
+    question: "Bueno, pase un bonito día y gracias\npor la compra!",
+    translation: "Well, have a nice day and thanks for the purchase!",
+    box1: "La computadora\nestá encendida.",
+    box2: "Ahorita sé\npasa.",
+    box3: "¡Gracias\nigual!"
 });
 
 var certificate = function(){
@@ -497,6 +497,7 @@ var splash = function(){
     fill(255, 255, 255);
     textSize(21);
     text("Learning Spanish with Danny and Charlie!", 3,29); // Title
+    text("Bookstore", 149,73);
     fill(82, 80, 52);
     rect(-5,300,419,150); // SideWalk
     fill(255, 0, 0);
