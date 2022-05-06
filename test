@@ -1,5 +1,4 @@
 var currentScene = 0;
-var mistakeFlip = null;
 var score = 0;
 
 //Charlie's Bitmoji
@@ -318,15 +317,15 @@ gameScene.prototype.draw = function() {
     fill(242, 22, 95);
     rect(5, 295, 125, 90); //first answer box
     fill(0, 0, 0);
-    text(this.box1, 29, 342);
+    text(this.box1, 13, 321);
     fill(242, 22, 95);
     rect(137, 295, 125, 90); //second answer box
     fill(0, 0, 0);
-    text(this.box2, 156, 342);
+    text(this.box2, 144, 321);
     fill(242, 22, 95);
     rect(271, 295, 125, 90); //third answer box
     fill(0, 0, 0);
-    text(this.box3, 307, 342);
+    text(this.box3, 278, 321);
     text("Score: " + score, 20, 284);
     fill(255, 255, 0);
     noStroke();
@@ -395,7 +394,7 @@ var gScene6 = new gameScene ({ //sixth scene
 
 var gScene7 = new gameScene ({ //sixth scene
     question: "¿De quién es ese perro?",
-    translation: "Who's Dog is that?",
+    translation: "Whose dog is that?",
     box1: "Ese gato\nes mío.",
     box2: "Ese perro\nes mío.",
     box3: "¡Mañana está\nbien!"
@@ -411,7 +410,7 @@ var gScene8 = new gameScene ({ //sixth scene
 
 var gScene9 = new gameScene ({ //sixth scene
     question: "Gracias. ¡Aquí está su recibo! ¿Quisiera\nsacar una tarjeta de cupones\ncon nosotros?",
-    translation: "Thank you. Here is your receipt! Would you like to get a coupon card with us?",
+    translation: "Thank you. Here is your receipt!\nWould you like to get a coupon\ncard with us?",
     box1: "¡No gracias!\nQuizas otro\ndía.",
     box2: "Mi carro\nesta prendido.",
     box3: "El dulce\nesta muy\nbueno."
@@ -726,6 +725,15 @@ draw = function() {
         mScene3.draw();
     }
     else if (currentScene === 6.5){
+        mScene6.draw();
+    }
+    else if (currentScene === 7.5){
+        mScene6.draw();
+    }
+    else if (currentScene === 8.5){
+        mScene6.draw();
+    }
+    else if (currentScene === 9.5){
         mScene6.draw();
     }
 
