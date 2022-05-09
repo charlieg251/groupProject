@@ -315,15 +315,15 @@ gameScene.prototype.draw = function() {
     textSize(18);
     text(this.question, 50, 20);
     fill(242, 22, 95);
-    rect(5, 295, 125, 90); //first answer box
+    rect(5, 295, 125, 100); //first answer box
     fill(0, 0, 0);
     text(this.box1, 13, 321);
     fill(242, 22, 95);
-    rect(137, 295, 125, 90); //second answer box
+    rect(137, 295, 125, 100); //second answer box
     fill(0, 0, 0);
     text(this.box2, 144, 321);
     fill(242, 22, 95);
-    rect(271, 295, 125, 90); //third answer box
+    rect(271, 295, 125, 100); //third answer box
     fill(0, 0, 0);
     text(this.box3, 278, 321);
     text("Score: " + score, 20, 284);
@@ -409,8 +409,8 @@ var gScene8 = new gameScene ({ //sixth scene
 });
 
 var gScene9 = new gameScene ({ //sixth scene
-    question: "Gracias. ¡Aquí está su recibo! ¿Quisiera\nsacar una tarjeta de cupones\ncon nosotros?",
-    translation: "Thank you. Here is your receipt!\nWould you like to get a coupon\ncard with us?",
+    question: "Gracias. ¡Aquí está su recibo! ¿Quisiera\nsacar una tarjeta de cupones\n             con nosotros?",
+    translation: "Thank you. Here is your receipt!\nWould you like to get a coupon\ncard with us?",     
     box1: "¡No gracias!\nQuizas otro\ndía.",
     box2: "Mi carro\nesta prendido.",
     box3: "El dulce\nesta muy\nbueno."
@@ -419,7 +419,7 @@ var gScene9 = new gameScene ({ //sixth scene
 var gScene10 = new gameScene ({ //sixth scene
     question: "Bueno, pase un bonito día y gracias\npor la compra!",
     translation: "Well, have a nice day and thanks for the purchase!",
-    box1: "La computadora\nestá encendida.",
+    box1: "La\ncomputadora\nestá\nencendida.",
     box2: "Ahorita sé\npasa.",
     box3: "¡Gracias\nigual!"
 });
