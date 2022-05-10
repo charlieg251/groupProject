@@ -1,4 +1,5 @@
 var currentScene = 0;
+var score = 0;
 
 //Charlie's Bitmoji
 var drawHeadd = function(x,y,h){
@@ -232,7 +233,7 @@ Button.prototype.draw = function() {
     rect(this.x, this.y, this.width, this.height, 5);
     fill(0, 0, 0);
     textSize(19);
-    text(this.label, this.x+10, this.y+this.height/4);
+    text(this.label, this.x+10, this.y+this.height/2);
 };
 
 Button.prototype.isMouseInside = function() {
@@ -255,17 +256,237 @@ var startButton = new Button({
     height: 125,
     label: "Play!",
     onClick: function() {
+        currentScene = 0.5;
+    }
+});
+
+var beginButton = new Button({
+    x: 160,
+    y: 350,
+    width: 75,
+    height: 40,
+    label: "Begin!",
+    onClick: function() {
         currentScene = 1;
+    }
+});
+
+var tryAgain = new Button({
+    x: 140,
+    y: 158,
+    width: 100,
+    height: 61,
+    label: "Try again!",
+    onClick: function() {
+    if (currentScene % 1 !== 0) {
+        currentScene = Math.floor(currentScene);
+        }
     }
 });
 
 mouseReleased = function() {
     if (currentScene=== 0){
-        startButton.handleMouseClick(); 
+        startButton.handleMouseClick();
+    }
+    else if (currentScene % 1 !== 0 && currentScene !== 0.5) {
+        tryAgain.handleMouseClick();
+    }
+    else if (currentScene === 0.5){
+        beginButton.handleMouseClick();
     }
 
 };
 
+var gameScene = function(config){ //game scene constructor function
+    this.question = config.question;
+    this.translation = config.translation;
+    this.box1 = config.box1; //text for answer boxes
+    this.box2 = config.box2;
+    this.box3 = config.box3;
+};
+
+gameScene.prototype.draw = function() {
+    background(81, 244, 247);
+    fill(125, 83, 29); 
+    rect(2, 126, 402, 126);// counter
+    drawBitmoji(63,-1,42); //Charlie's Call
+    drawEmoji(288,59,98);  //Danny's Call
+    fill(0, 0, 0);
+    textSize(18);
+    text(this.question, 50, 20);
+    fill(242, 22, 95);
+    rect(5, 295, 125, 100); //first answer box
+    fill(0, 0, 0);
+    text(this.box1, 13, 321);
+    fill(242, 22, 95);
+    rect(137, 295, 125, 100); //second answer box
+    fill(0, 0, 0);
+    text(this.box2, 144, 321);
+    fill(242, 22, 95);
+    rect(271, 295, 125, 100); //third answer box
+    fill(0, 0, 0);
+    text(this.box3, 278, 321);
+    text("Score: " + score, 20, 284);
+    fill(255, 255, 0);
+    noStroke();
+    ellipse(33, 176, 50, 50);
+    fill(0, 0, 0);
+    textSize(35);
+    text("?", 22, 187);
+    if (mouseX >= 12 && mouseX <= 62 && mouseY >= 156 && mouseY <= 206){
+        textSize(18);
+        fill(255, 255, 255);
+        text(this.translation, 60, 176);
+    }
+};
+
+var gScene1 = new gameScene ({ //first scene
+    question: "Bienvenido! ¿Cuál es su nombre?",
+    translation: "Welcome! What's your name?",
+    box1: "Mi nombre\nes\n(tu nombre)!",
+    box2: "Tu nombre\nes\n(tu nombre)!",
+    box3: "¿Qué?"
+    
+});
+
+var gScene2 = new gameScene ({ //second scene
+    question: "¿Cómo estás hoy?",
+    translation: "How are you doing today?",
+    box1: "¡Yo estoy\nbien! ¿Y tú?",
+    box2: "¡Sí!",
+    box3: "Yo lo termino\ndespués.\n¡Gracias!"
+    
+});
+
+var gScene3 = new gameScene ({ //third scene
+    question: "¿Quieres comprar algo?",
+    translation: "Do you want to buy something?",
+    box1: "¡Me gusta!",
+    box2: "¿Dónde está\nel baño?",
+    box3: "Sí, yo quiero\ncomprar algo."
+    
+});
+
+var gScene4 = new gameScene ({ //fourth scene
+    question: "¿Qué quisieras comprar?",
+    translation: "What would you like to buy?",
+    box1: "Una lampara",
+    box2: "Un libro",
+    box3: "Una gorra"
+    
+});
+
+var gScene5 = new gameScene ({ //fifth scene
+    question: "¿Qué quisieras usar para pagar?",
+    translation: "What would you use to pay?",
+    box1: "Con dinero\npor favor",
+    box2: "Un carro",
+    box3: "Con queso\npor favor"
+});
+
+var gScene6 = new gameScene ({ //sixth scene
+    question: "*Woof! Woof!*\n¿Qué fue eso?",
+    translation: "*Woof! Woof!*\nWhat was that?",
+    box1: "Eso fue un\ngato.",
+    box2: "Esa fue una\nave.",
+    box3: "Eso fue un\nperro."
+});
+
+var gScene7 = new gameScene ({ //seventh scene
+    question: "¿De quién es ese perro?",
+    translation: "Whose dog is that?",
+    box1: "Ese gato\nes mío.",
+    box2: "Ese perro\nes mío.",
+    box3: "¡Mañana está\nbien!"
+});
+
+var gScene8 = new gameScene ({ //eighth scene
+    question: "Oh, está bien. Bueno, continuemos!",
+    translation: "Oh, it's fine. Well, let's continue!",
+    box1: "La foto.",
+    box2: "Sí, aquí está\nel teclado.",
+    box3: "Sí, aquí está\nel dinero."
+});
+
+var gScene9 = new gameScene ({ //nineth scene
+    question: "Gracias. ¿Quisiera sacar una tarjeta de\ncupones con nosotros?",
+    translation: "Thank you. Would you like to get a coupon\ncard with us?",     
+    box1: "¡No gracias!\nQuizas otro\ndía.",
+    box2: "Mi carro\nesta prendido.",
+    box3: "El dulce\nesta muy\nbueno."
+});
+
+var gScene10 = new gameScene ({ //tenth scene
+    question: "Bueno, pase un bonito día y gracias\npor la compra!",
+    translation: "Well, have a nice day and thanks for the purchase!",
+    box1: "La\ncomputadora\nestá\nencendida.",
+    box2: "Ahorita sé\npasa.",
+    box3: "¡Gracias\nigual!"
+});
+
+var certificate = function(){
+    background(209, 174, 174);
+    fill(255, 255, 255);
+    rect(11,15,378,370); //White background
+    fill(214, 7, 7);
+    textSize(24.5);
+    text("CERTIFICATE OF COMPLETION",16,73); //title
+    textSize(24);
+    text("This acknowledges that", 69,120); //subtitle
+    text(" Have successfully completed the\n            game with " + score + " points.",22,225); //Mini paragraph
+    textSize(50);
+    text("YOU",141,184);
+    line(172,339,31,339); // Line at the bottom on the left
+    line(367,339,221,339); // Line at the bottom on the right
+    textSize(14);
+    text("Creater of the game",39,360);
+    text("Creater of the game",235,360);
+    text("Danny Trinidad", 50, 336);
+    text("Charlie Grenier", 248, 336);
+};
+
+var mistakeScene = function(config) {   //Constructor for mistake scenes
+    this.error = config.error; //response to mistake
+};
+
+mistakeScene.prototype.draw = function() {
+    background(81, 244, 247);
+    fill(125, 83, 29); 
+    rect(2, 126, 402, 126);// counter
+    drawBitmoji(63,-1,42); //Charlie's Call
+    drawEmoji(288,59,98);  //Danny's Call
+    fill(0, 0, 0);
+    textSize(18);
+    text(this.error, 144, 20);
+    fill(0, 0, 0);
+    textSize(22);
+    tryAgain.draw();
+    text("Score: " + score, 20, 284);
+};
+
+var mScene1 = new mistakeScene ({ //mistake scene 1
+    error: "No, my name is Danny."
+});
+
+var mScene2 = new mistakeScene ({ //mistake scene 2
+    error: "That's not a response."
+});
+
+var mScene3 = new mistakeScene ({ //mistake scene 3
+    error: "What do you mean?"
+});
+
+var mScene4 = new mistakeScene ({ //mistake scene 4
+    error: "That doesn't make sense."
+});
+
+var mScene5 = new mistakeScene ({ //mistake scene 5
+    error: "That doesn't make sense."
+});
+
+var mScene6 = new mistakeScene ({ //mistake scene 6
+    error: "No, it isn't."
+});
 
 var splash = function(){
     background(125, 181, 209);
@@ -275,11 +496,12 @@ var splash = function(){
     fill(255, 255, 255);
     textSize(21);
     text("Learning Spanish with Danny and Charlie!", 3,29); // Title
+    text("Bookstore", 149,73);
     fill(82, 80, 52);
     rect(-5,300,419,150); // SideWalk
     fill(255, 0, 0);
     rect(50,77,301,222); // Building
-    fill(255, 255, 255);
+    fill(115, 171, 127);
     rect(73,97,68,133); // Window
     rect(254,97,68,133); // Window
     drawBitmoji(79,101,42); //Charlie's Call
@@ -287,104 +509,235 @@ var splash = function(){
     startButton.draw();
 };
 
-var game1 = function(){
-    background(255, 255, 255);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(16);
-    text("spn: Welcome! What's your name?", 50, 20);
-    fill(242, 22, 95);
-    rect(5, 304, 108, 78); //first answer box
-    fill(0, 0, 0);
-    text("spn: My name \n is Player.", 11, 317);
-    fill(242, 22, 95);
-    rect(145, 304, 110, 78);
-    fill(0, 0, 0);
-    text("spn: Your name \n is Player.", 143, 317);
-    fill(242, 22, 95);
-    rect(287, 304, 110, 78);
-    fill(0, 0, 0);
-    text("What?", 318, 317);
+var instructions = function(){
+  background(55, 212, 162);
+  textSize(26);
+  text("How To Play", 126, 50);
+  textSize(17);
+  text("You will be given a prompt from the shopkeepers.", 12, 100);
+  text("Select the correct answer from the pink boxes.", 26, 142);
+  text("Selecting the right answer will give you one point.", 18, 180);
+  text("Selecting the wrong answer will take away\n                          one point.", 42, 215);
+  text("Hovering the mouse over the yellow button\n        will show the English translation.", 41, 275);
+  textSize(20);
+  text("Do your best and have fun!", 77, 340);
+  beginButton.draw();
 };
 
-var mistake1 = function(){
-    background(255, 255, 255);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(16);
-    text("spn: No, my name is Danny. \n eng: Try again!", 144, 20);
-    fill(242, 22, 95);
-    rect(5, 304, 108, 78); //first answer box
-    fill(0, 0, 0);
-    text("spn: My name \n is Player.", 11, 337);
-    fill(242, 22, 95);
-    rect(145, 304, 110, 78);
-    fill(0, 0, 0);
-    text("spn: Your name \n is Player.", 154, 338);
-    fill(242, 22, 95);
-    rect(287, 304, 110, 78);
-    fill(0, 0, 0);
-    text("What?", 318, 345);
-};
-
-var game2 = function(){
-    background(255, 255, 255);
-    fill(125, 83, 29); 
-    rect(2, 126, 402, 126);// counter
-    drawBitmoji(63,-1,42); //Charlie's Call
-    drawEmoji(288,59,98);  //Danny's Call
-    fill(0, 0, 0);
-    textSize(16);
-    text("", 50, 20);
-    fill(242, 22, 95);
-    rect(5, 304, 108, 78); //first answer box
-    fill(0, 0, 0);
-    text("", 11, 317);
-    fill(242, 22, 95);
-    rect(145, 304, 110, 78); //second answer box
-    fill(0, 0, 0);
-    text("", 143, 317);
-    fill(242, 22, 95);
-    rect(287, 304, 110, 78); //third answer box
-    fill(0, 0, 0);
-    text("", 318, 317);
-};
-
+//1.5 mScene1 response scene, 1.6 is mScene2 response scene
 mouseClicked = function(){
-    if (mouseX >= 5 && mouseX <= 111 && mouseY >= 304 && mouseY <= 412){
+    if (mouseX >= 5 && mouseX <= 130 && mouseY >= 295 && mouseY <= 385){
+          // Correct answer box in scene 1.
         if (currentScene === 1){
                 currentScene = 2;
+                score += 1;
+        } // Correct nswer box in scene 2.
+        else if (currentScene === 2){
+                currentScene = 3;
+                score += 1;
+        } //Mistake answer box in scene 3. 
+        else if (currentScene === 3){
+                currentScene = 3.5;
+                score -= 1;
+        } //Mistake answer box in scene 4.
+        else if (currentScene === 4){
+                currentScene = 4.5;
+                score -= 1;
+        } // Correct answer box in Scene 5. 
+        else if (currentScene === 5){
+                currentScene = 6;
+                score += 1;
+        } //Mistake answer box in scene 6.
+        else if (currentScene === 6){
+                currentScene = 6.5;
+                score -= 1;
+        } //Mistake answer box in scene 7.
+        else if (currentScene === 7){
+                currentScene = 7.5;
+                score -= 1;
+        } //Mistake answer box in scene 8.
+        else if (currentScene === 8){
+                currentScene = 8.5;
+                score -= 1;
+        } // Correct answer box in Scene 9.
+        else if (currentScene === 9){
+                currentScene = 10;
+                score += 1;
+        } //Mistake answer box in scene 10.
+        else if (currentScene === 10){
+                currentScene = 10.5;
+                score -= 1;
         }
     }
-    if (mouseX >= 145 && mouseX <= 255 && mouseY >= 304 && mouseY <= 412){
+    if (mouseX >= 145 && mouseX <= 255 && mouseY >= 295 && mouseY <= 385){
+          //Mistake answer box in scene 1.
         if (currentScene === 1){
                 currentScene = 1.5;
+                score -= 1;
+        } //Mistake answer box in scene 2.
+        else if (currentScene === 2){
+                currentScene = 2.5;
+                score -= 1;
+        } //Mistake answer box in scene 3.
+        else if (currentScene === 3){
+                currentScene = 3.6;
+                score -= 1;
+        } // Correct answer box in Scene 4.
+        else if (currentScene === 4){
+                currentScene = 5;
+                score += 1;
+        } //Mistake answer box in scene 5.
+        else if (currentScene === 5){
+                currentScene = 5.5;
+                score -= 1;
+        } //Mistake answer box in scene 6.
+        else if (currentScene === 6){
+                currentScene = 6.5;
+                score -= 1;
+        } // Correct answer box in Scene 7.
+        else if (currentScene === 7){
+                currentScene = 8;
+                score += 1;
+        } //Mistake answer box in scene 8.
+        else if (currentScene === 8){
+                currentScene = 8.5;
+                score -= 1;
+        } //Mistake answer box in scene 9.
+        else if (currentScene === 9){
+                currentScene = 9.5;
+                score -= 1;
+        } //Mistake answer box in scene 10.
+        else if (currentScene === 10){
+                currentScene = 10.5;
+                score -= 1;
         }
     }
-    if (mouseX >= 287 && mouseX <= 397 && mouseY >= 304 && mouseY <= 382){
+    if (mouseX >= 287 && mouseX <= 397 && mouseY >= 295 && mouseY <= 385){
+          //Mistake answer box in scene 1.
         if (currentScene === 1){
-            
+                currentScene = 1.6;
+                score -= 1;
+        } //Mistake answer box in scene 2.
+        else if (currentScene === 2){
+                currentScene = 2.6;
+                score -= 1;
+        } // Correct answer box in Scene 3.
+        else if (currentScene === 3){
+                currentScene = 4;
+                score += 1;
+        } //Mistake answer box in scene 4.
+        else if (currentScene === 4){
+                currentScene = 4.6;
+                score -= 1;
+        } //Mistake answer box in scene 5.
+        else if (currentScene === 5){
+                currentScene = 5.6;
+                score -= 1;
+        } // Correct answer box in Scene 6.
+        else if (currentScene === 6){
+                currentScene = 7;
+                score += 1;
+        } //Mistake answer box in scene 7.
+        else if (currentScene === 7){
+                currentScene = 7.5;
+                score -= 1;
+        } // Correct answer box in Scene 8.
+        else if (currentScene === 8){
+                currentScene = 9;
+                score += 1;
+        } //Mistake answer box in scene 9.
+        else if (currentScene === 9){
+                currentScene = 9.5;
+                score -= 1;
+        } // Correct answer box in Scene 10.
+        else if (currentScene === 10){
+                currentScene = 11;
+                score += 1;
         }
     }
 };
 
 draw = function() {
     if (currentScene === 0){
-      splash();
+        splash();
     }
-    else if (currentScene === 1) {
-      game1();
+    else if (currentScene === 0.5){
+        instructions();
     }
-    else if (currentScene === 2) {
-      game2();
+    else if (currentScene === 1){
+        gScene1.draw();
     }
-    else if (currentScene === 1.5) {
-        mistake1();
+    else if (currentScene === 2){
+        gScene2.draw();
     }
+    else if (currentScene === 3){
+        gScene3.draw();
+    }
+    else if (currentScene === 4){
+        gScene4.draw();
+    }
+    else if (currentScene === 5){
+        gScene5.draw();
+    }
+    else if (currentScene === 6){
+        gScene6.draw();
+    }
+    else if (currentScene === 7){
+        gScene7.draw();
+    }
+    else if (currentScene === 8){
+        gScene8.draw();
+    }
+    else if (currentScene === 9){
+        gScene9.draw();
+    }
+    else if (currentScene === 10){
+        gScene10.draw();
+    }
+    else if (currentScene === 11){
+        certificate();
+    }
+    else if (currentScene === 1.5){
+        mScene1.draw();
+    }
+    else if (currentScene === 1.6){
+        mScene2.draw();
+    }
+    else if (currentScene === 2.5){
+        mScene3.draw();
+    }
+    else if (currentScene === 2.6){
+        mScene4.draw();
+    }
+    else if (currentScene === 3.5){
+        mScene3.draw();
+    }
+    else if (currentScene === 3.6){
+        mScene5.draw();
+    }
+    else if (currentScene === 4.5){
+        mScene5.draw();
+    }
+    else if (currentScene === 4.6){
+        mScene3.draw();
+    }
+    else if (currentScene === 5.5){
+        mScene4.draw();
+    }
+    else if (currentScene === 5.6){
+        mScene3.draw();
+    }
+    else if (currentScene === 6.5){
+        mScene6.draw();
+    }
+    else if (currentScene === 7.5){
+        mScene6.draw();
+    }
+    else if (currentScene === 8.5){
+        mScene6.draw();
+    }
+    else if (currentScene === 9.5){
+        mScene6.draw();
+    }
+
 };
