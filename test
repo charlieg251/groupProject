@@ -409,8 +409,8 @@ var gScene8 = new gameScene ({ //sixth scene
 });
 
 var gScene9 = new gameScene ({ //sixth scene
-    question: "Gracias. ¡Aquí está su recibo! ¿Quisiera\nsacar una tarjeta de cupones\n             con nosotros?",
-    translation: "Thank you. Here is your receipt!\nWould you like to get a coupon\ncard with us?",     
+    question: "Gracias. ¿Quisiera sacar una tarjeta de\ncupones con nosotros?",
+    translation: "Thank you. Would you like to get a coupon\ncard with us?",     
     box1: "¡No gracias!\nQuizas otro\ndía.",
     box2: "Mi carro\nesta prendido.",
     box3: "El dulce\nesta muy\nbueno."
