@@ -392,7 +392,7 @@ var gScene6 = new gameScene ({ //sixth scene
     box3: "Eso fue un\nperro."
 });
 
-var gScene7 = new gameScene ({ //sixth scene
+var gScene7 = new gameScene ({ //seventh scene
     question: "¿De quién es ese perro?",
     translation: "Whose dog is that?",
     box1: "Ese gato\nes mío.",
@@ -400,7 +400,7 @@ var gScene7 = new gameScene ({ //sixth scene
     box3: "¡Mañana está\nbien!"
 });
 
-var gScene8 = new gameScene ({ //sixth scene
+var gScene8 = new gameScene ({ //eighth scene
     question: "Oh, está bien. Bueno, continuemos!",
     translation: "Oh, it's fine. Well, let's continue!",
     box1: "La foto.",
@@ -408,7 +408,7 @@ var gScene8 = new gameScene ({ //sixth scene
     box3: "Sí, aquí está\nel dinero."
 });
 
-var gScene9 = new gameScene ({ //sixth scene
+var gScene9 = new gameScene ({ //nineth scene
     question: "Gracias. ¿Quisiera sacar una tarjeta de\ncupones con nosotros?",
     translation: "Thank you. Would you like to get a coupon\ncard with us?",     
     box1: "¡No gracias!\nQuizas otro\ndía.",
@@ -416,7 +416,7 @@ var gScene9 = new gameScene ({ //sixth scene
     box3: "El dulce\nesta muy\nbueno."
 });
 
-var gScene10 = new gameScene ({ //sixth scene
+var gScene10 = new gameScene ({ //tenth scene
     question: "Bueno, pase un bonito día y gracias\npor la compra!",
     translation: "Well, have a nice day and thanks for the purchase!",
     box1: "La\ncomputadora\nestá\nencendida.",
@@ -527,126 +527,129 @@ var instructions = function(){
 //1.5 mScene1 response scene, 1.6 is mScene2 response scene
 mouseClicked = function(){
     if (mouseX >= 5 && mouseX <= 130 && mouseY >= 295 && mouseY <= 385){
+          // Correct answer box in scene 1.
         if (currentScene === 1){
                 currentScene = 2;
                 score += 1;
-        } //first answer box in scene 1.
+        } // Correct nswer box in scene 2.
         else if (currentScene === 2){
                 currentScene = 3;
                 score += 1;
-        } //first answer box in scene 2. 
+        } //Mistake answer box in scene 3. 
         else if (currentScene === 3){
                 currentScene = 3.5;
                 score -= 1;
-        } //mistake answer box in scene 3
+        } //Mistake answer box in scene 4.
         else if (currentScene === 4){
                 currentScene = 4.5;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 5. 
         else if (currentScene === 5){
                 currentScene = 6;
                 score += 1;
-        }
+        } //Mistake answer box in scene 6.
         else if (currentScene === 6){
                 currentScene = 6.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 7.
         else if (currentScene === 7){
                 currentScene = 7.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 8.
         else if (currentScene === 8){
                 currentScene = 8.5;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 9.
         else if (currentScene === 9){
                 currentScene = 10;
                 score += 1;
-        }
+        } //Mistake answer box in scene 10.
         else if (currentScene === 10){
                 currentScene = 10.5;
                 score -= 1;
         }
     }
     if (mouseX >= 145 && mouseX <= 255 && mouseY >= 295 && mouseY <= 385){
+          //Mistake answer box in scene 1.
         if (currentScene === 1){
                 currentScene = 1.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 2.
         else if (currentScene === 2){
                 currentScene = 2.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 3.
         else if (currentScene === 3){
                 currentScene = 3.6;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 4.
         else if (currentScene === 4){
                 currentScene = 5;
                 score += 1;
-        }
+        } //Mistake answer box in scene 5.
         else if (currentScene === 5){
                 currentScene = 5.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 6.
         else if (currentScene === 6){
                 currentScene = 6.5;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 7.
         else if (currentScene === 7){
                 currentScene = 8;
                 score += 1;
-        }
+        } //Mistake answer box in scene 8.
         else if (currentScene === 8){
                 currentScene = 8.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 9.
         else if (currentScene === 9){
                 currentScene = 9.5;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 10.
         else if (currentScene === 10){
                 currentScene = 10.5;
                 score -= 1;
         }
     }
     if (mouseX >= 287 && mouseX <= 397 && mouseY >= 295 && mouseY <= 385){
+          //Mistake answer box in scene 1.
         if (currentScene === 1){
                 currentScene = 1.6;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 2.
         else if (currentScene === 2){
                 currentScene = 2.6;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 3.
         else if (currentScene === 3){
                 currentScene = 4;
                 score += 1;
-        }
+        } //Mistake answer box in scene 4.
         else if (currentScene === 4){
                 currentScene = 4.6;
                 score -= 1;
-        }
+        } //Mistake answer box in scene 5.
         else if (currentScene === 5){
                 currentScene = 5.6;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 6.
         else if (currentScene === 6){
                 currentScene = 7;
                 score += 1;
-        }
+        } //Mistake answer box in scene 7.
         else if (currentScene === 7){
                 currentScene = 7.5;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 8.
         else if (currentScene === 8){
                 currentScene = 9;
                 score += 1;
-        }
+        } //Mistake answer box in scene 9.
         else if (currentScene === 9){
                 currentScene = 9.5;
                 score -= 1;
-        }
+        } // Correct answer box in Scene 10.
         else if (currentScene === 10){
                 currentScene = 11;
                 score += 1;
